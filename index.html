@@ -2,122 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{height:100vh;overflow:hidden;text-align:center}
+body{
+    margin:0;
+    height:100vh;
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+    text-align:center;
+}
 
-/* ================= PASSWORD SCREEN ================= */
-#passwordScreen{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+/* ================= PASSWORD PAGE ================= */
+#passwordPage{
+    height:100vh;
+    background:linear-gradient(to bottom,#ff758c,#ff7eb3);
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:1000;
+    color:white;
+    position:relative;
 }
 
-.password-box{
+#passwordBox{
     background:rgba(255,255,255,0.15);
     padding:40px;
     border-radius:20px;
     backdrop-filter:blur(10px);
-    color:white;
-    width:300px;
 }
 
-.password-box h2{margin-bottom:20px}
-
-.password-box input{
-    width:100%;
+input{
     padding:12px;
-    border:none;
-    border-radius:8px;
-    margin-bottom:15px;
-    text-align:center;
     font-size:16px;
+    border-radius:8px;
+    border:none;
+    text-align:center;
+    outline:none;
+    width:220px;
 }
 
-.password-box button{
-    width:100%;
-    padding:12px;
+button{
+    margin-top:15px;
+    padding:10px 25px;
+    font-size:16px;
     border:none;
     border-radius:8px;
+    cursor:pointer;
     background:white;
     color:#ff3366;
     font-weight:bold;
-    cursor:pointer;
 }
 
-#error{
+#errorMsg{
     margin-top:10px;
     font-weight:bold;
-    min-height:20px;
 }
 
-#hintBtn{
-    margin-top:8px;
+#hint{
+    margin-top:10px;
     font-size:13px;
     cursor:pointer;
     text-decoration:underline;
 }
 
-/* Shake animation */
-@keyframes shake{
-0%{transform:translateX(0)}
-25%{transform:translateX(-6px)}
-50%{transform:translateX(6px)}
-75%{transform:translateX(-6px)}
-100%{transform:translateX(0)}
+.shake{
+    animation:shake 0.4s;
 }
-.shake{animation:shake .4s}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
+    75%{transform:translateX(-5px);}
+    100%{transform:translateX(0);}
+}
+
+/* Unlock flash */
+.flash{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:white;
+    top:0;
+    left:0;
+    opacity:0;
+    pointer-events:none;
+    animation:flashAnim 1s forwards;
+}
+
+@keyframes flashAnim{
+    0%{opacity:1;}
+    100%{opacity:0;}
+}
 
 /* ================= PAGE 1 ================= */
 #page1{
-    display:none;
     height:100vh;
     background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
-    display:flex;
+    display:none;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
+}
+
+.container{position:relative;}
+h1{color:#b30059;}
+
+.buttons{
+    margin-top:30px;
+    position:relative;
+}
+
+#hintText{
+    margin-bottom:12px;
+    font-size:15px;
+    color:#800040;
+    font-weight:600;
 }
 
 .btn{
-    padding:14px 30px;
+    padding:14px 32px;
+    font-size:18px;
     border:none;
     border-radius:10px;
-    font-size:18px;
     cursor:pointer;
-    transition:.3s;
+    transition:transform 0.3s;
 }
 
-#yesBtn{background:#ff3366;color:white}
-#noBtn{background:#555;color:white}
+#yesBtn{background:#ff3366;color:white;}
+#noBtn{background:#555;color:white;}
 
-#noContainer{position:relative;display:inline-block}
-#msg{margin-top:8px;color:#800040;font-weight:bold}
+#noContainer{
+    display:inline-block;
+    position:absolute;
+    margin-left:20px;
+}
+
+#msg{
+    margin-top:8px;
+    font-size:17px;
+    color:#800040;
+    font-weight:600;
+}
 
 /* ================= PAGE 2 ================= */
 #page2{
-    position:fixed;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    background:radial-gradient(circle at top,#ff9ab3,#ff5c8a,#b0004b);
+    color:white;
+    position:absolute;
     top:0;
     left:0;
     width:100%;
-    height:100%;
-    background:radial-gradient(circle at top,#ff9ab3,#ff5c8a,#b0004b);
-    color:white;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
     opacity:0;
     pointer-events:none;
-    transition:1s;
+    transition:opacity 1s;
 }
 
 .big-heart{
@@ -126,52 +169,81 @@ body{height:100vh;overflow:hidden;text-align:center}
 }
 
 @keyframes pulse{
-50%{transform:scale(1.2)}
+    50%{transform:scale(1.15);}
 }
 
+/* Floating hearts */
 .heart{
     position:fixed;
-    bottom:-20px;
+    bottom:-10px;
     font-size:22px;
-    animation:float 6s linear forwards;
+    animation:float 7s linear infinite;
 }
 @keyframes float{
-to{transform:translateY(-110vh);opacity:0}
+    to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* Confetti */
+.confetti{
+    position:fixed;
+    width:8px;
+    height:14px;
+    top:-20px;
+    animation:fall 3s linear forwards;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- PASSWORD SCREEN -->
-<div id="passwordScreen">
-    <div class="password-box">
-        <h2>Enter Secret Password 💕</h2>
-        <input type="password" id="passwordInput" placeholder="Enter password">
-        <button id="unlockBtn">Unlock ❤️</button>
-        <div id="error"></div>
-        <div id="hintBtn">Forgot password?</div>
+<!-- PASSWORD PAGE -->
+<div id="passwordPage">
+    <div id="passwordBox">
+        <form id="passwordForm">
+            <h2>Enter Secret Password 💕</h2>
+            <input type="password" id="passwordInput" placeholder="Enter password" required>
+            <br>
+            <button type="submit">Unlock ❤️</button>
+            <div id="errorMsg"></div>
+            <div id="hint">Forgot password?</div>
+        </form>
     </div>
 </div>
 
 <!-- PAGE 1 -->
 <div id="page1">
+  <div class="container">
     <h1>KODIMALAR 💕</h1>
     <h2>Will you be my Valentine?</h2>
-    <br>
-    <button id="yesBtn" class="btn">Yes 💖</button>
-    <div id="noContainer">
+    <p>– Raj 💌</p>
+
+    <div class="buttons">
+      <p id="hintText">Sorry you can't click NO 😜</p>
+      <button id="yesBtn" class="btn">Yes 💖</button>
+
+      <div id="noContainer">
         <button id="noBtn" class="btn">No</button>
         <div id="msg"></div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- PAGE 2 -->
 <div id="page2">
-    <h1>KRISHNA RAJ ❤️ KODIMALAR</h1>
-    <h2>Forever & Always 💍</h2>
-    <div class="big-heart">❤️</div>
+  <h1>KRISHNA RAJ ❤️ KODIMALAR</h1>
+  <h2>என்றும் உன்னோடு… Forever & Always 💍</h2>
+  <div class="big-heart">❤️</div>
+  <img id="slide" width="280" style="border-radius:20px;margin-top:20px;">
 </div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+</audio>
 
 <script>
 /* ================= PASSWORD LOGIC ================= */
@@ -179,88 +251,128 @@ const correctPassword = "kodimalar";
 let attempts = 0;
 const maxAttempts = 3;
 
+const passwordForm = document.getElementById("passwordForm");
 const passwordInput = document.getElementById("passwordInput");
-const unlockBtn = document.getElementById("unlockBtn");
-const error = document.getElementById("error");
-const passwordScreen = document.getElementById("passwordScreen");
+const errorMsg = document.getElementById("errorMsg");
+const passwordPage = document.getElementById("passwordPage");
 const page1 = document.getElementById("page1");
+const bgMusic = document.getElementById("bgMusic");
 
-function unlock(){
-    const value = passwordInput.value.trim();
-
-    if(value === ""){
-        error.textContent = "Please enter password 💕";
-        return;
-    }
-
-    if(value === correctPassword){
-        passwordScreen.style.display = "none";
-        page1.style.display = "flex";
-    } else {
-        attempts++;
-        error.textContent = "Wrong password 😢 Attempts left: " + (maxAttempts - attempts);
-        passwordScreen.classList.add("shake");
-        setTimeout(()=>passwordScreen.classList.remove("shake"),400);
-        passwordInput.value = "";
-
-        if(attempts >= maxAttempts){
-            error.textContent = "Too many attempts 💔 Locked!";
-            unlockBtn.disabled = true;
-            passwordInput.disabled = true;
-        }
-    }
-}
-
-unlockBtn.addEventListener("click", unlock);
-
-passwordInput.addEventListener("keydown", function(e){
-    if(e.key === "Enter"){
-        unlock();
-    }
-});
-
-document.getElementById("hintBtn").onclick = function(){
-    alert("Hint: It's her name 😉");
-};
+const funnyMessages = [
+ "That’s not it 😜",
+ "Hmm… try something special 💕",
+ "Think from your heart ❤️"
+];
 
 passwordInput.focus();
 
-/* ================= NO BUTTON ================= */
-const noBtn=document.getElementById("noBtn");
-const yesBtn=document.getElementById("yesBtn");
-const msg=document.getElementById("msg");
+passwordForm.addEventListener("submit", function(e){
+    e.preventDefault();
 
+    if(passwordInput.value === correctPassword){
+        const flash=document.createElement("div");
+        flash.className="flash";
+        document.body.appendChild(flash);
+
+        setTimeout(()=>{
+            passwordPage.style.display="none";
+            page1.style.display="flex";
+            bgMusic.play().catch(()=>{});
+        },800);
+    } 
+    else {
+        attempts++;
+        errorMsg.innerText = funnyMessages[(attempts-1)%funnyMessages.length]
+            + " | Attempts left: " + (maxAttempts - attempts);
+
+        passwordPage.classList.add("shake");
+        setTimeout(()=>passwordPage.classList.remove("shake"),400);
+
+        passwordInput.value="";
+
+        if(attempts>=maxAttempts){
+            errorMsg.innerText="Too many attempts 💔 Locked!";
+            passwordInput.disabled=true;
+        }
+    }
+});
+
+/* Forgot password hint */
+document.getElementById("hint").onclick=function(){
+    alert("Hint: It's her name 😉");
+};
+
+/* ================= NO BUTTON ================= */
 const messages=[
-"Please don't do this 💭",
-"I am yours ❤️",
-"You can't escape 😜"
+ "Please don't do this 💭",
+ "I am yours ❤️",
+ "Sorry, you can't select NO 😆"
 ];
 
-let i=0;
+let i=0,noScale=1,yesScale=1;
+const noContainer=document.getElementById("noContainer");
+const msg=document.getElementById("msg");
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
 
-noBtn.onclick=function(){
-    this.style.position="fixed";
-    this.style.left=Math.random()*80+"vw";
-    this.style.top=Math.random()*80+"vh";
-    msg.textContent=messages[i++%messages.length];
-    yesBtn.style.transform="scale("+(1.1+i*0.1)+")";
+noContainer.onclick=()=>{
+    noContainer.style.position="fixed";
+    noContainer.style.left=Math.random()*(innerWidth-200)+"px";
+    noContainer.style.top=Math.random()*(innerHeight-200)+"px";
+    msg.innerText=messages[i++ % messages.length];
+
+    noScale-=0.15;
+    yesScale+=0.15;
+    noBtn.style.transform=`scale(${noScale})`;
+    yesBtn.style.transform=`scale(${yesScale})`;
 };
 
 /* ================= YES CLICK ================= */
-yesBtn.onclick=function(){
-    document.getElementById("page2").style.opacity=1;
-    document.getElementById("page2").style.pointerEvents="auto";
+yesBtn.onclick=()=>{
+    const p2=document.getElementById("page2");
+    page1.style.display="none";
+    p2.style.opacity=1;
+    p2.style.pointerEvents="auto";
+    startEffects();
 };
 
-/* Floating hearts */
+/* ================= EFFECTS ================= */
+function startEffects(){
+    setInterval(()=>{
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerText="❤️";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),7000);
+    },300);
+
+    for(let i=0;i<120;i++){
+        const c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),4000);
+    }
+}
+
+/* ================= SLIDESHOW ================= */
+const images=[
+ "https://media.tenor.com/__iEnCX1420AAAAm/i-love-you-love-you.webp",
+ "https://media.tenor.com/r21VpnHTN44AAAAM/i-love-you-love.gif",
+ "https://media.tenor.com/zhnbS6DI_60AAAAi/djnitish97-hug.gif"
+];
+
+let idx=0;
+const slide=document.getElementById("slide");
+slide.src=images[0];
+
 setInterval(()=>{
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-},400);
+    idx=(idx+1)%images.length;
+    slide.src=images[idx];
+},3500);
+
 </script>
 
 </body>

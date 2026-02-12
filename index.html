@@ -1,119 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Password Test</title>
-
-<style>
-body{
-    margin:0;
-    font-family:Arial;
-}
-
-/* Password Screen */
-#passwordScreen{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#f06292;
-}
-
-.box{
-    background:#f48fb1;
-    padding:40px;
-    border-radius:20px;
-    text-align:center;
-    width:300px;
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border-radius:8px;
-    border:none;
-    font-size:16px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-}
-
-#error{
-    margin-top:10px;
-    color:white;
-    font-weight:bold;
-}
-
-/* Page 1 */
-#page1{
-    display:none;
-    height:100vh;
-    background:#ffe0e6;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-</style>
-</head>
-
 <body>
 
-<div id="passwordScreen">
-    <div class="box">
-        <h2>Enter Secret Password 💕</h2>
-        <input type="password" id="passwordInput" placeholder="Enter password">
-        <button id="unlockBtn">Unlock ❤️</button>
-        <div id="error"></div>
-    </div>
-</div>
-
-<div id="page1">
-    <h1>Success ❤️</h1>
-</div>
+<input type="password" id="p">
+<button onclick="check()">Unlock</button>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-
-    const correctPassword = "1234";
-
-    const input = document.getElementById("passwordInput");
-    const button = document.getElementById("unlockBtn");
-    const error = document.getElementById("error");
-    const passwordScreen = document.getElementById("passwordScreen");
-    const page1 = document.getElementById("page1");
-
-    function unlock(){
-        if(input.value.trim() === ""){
-            error.textContent = "Please enter password";
-            return;
-        }
-
-        if(input.value === correctPassword){
-            passwordScreen.style.display = "none";
-            page1.style.display = "flex";
-        } else {
-            error.textContent = "Wrong password!";
-            input.value = "";
-        }
+function check(){
+    if(document.getElementById("p").value === "1234"){
+        alert("Success");
+    } else {
+        alert("Wrong");
     }
-
-    button.addEventListener("click", unlock);
-
-    input.addEventListener("keydown", function(e){
-        if(e.key === "Enter"){
-            unlock();
-        }
-    });
-
-});
+}
 </script>
 
 </body>

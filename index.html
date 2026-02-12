@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ---------- COMMON ---------- */
 body{
     margin:0;
     height:100vh;
@@ -15,12 +14,10 @@ body{
     text-align:center;
 }
 
-/* Fade utility */
-.fade{
-    transition:opacity 1s ease;
-}
+/* Fade */
+.fade{transition:opacity 1s ease;}
 
-/* ---------- PASSWORD PAGE ---------- */
+/* ================= PASSWORD PAGE ================= */
 #passwordPage{
     height:100vh;
     background:linear-gradient(to bottom,#ff758c,#ff7eb3);
@@ -31,18 +28,22 @@ body{
     color:white;
 }
 
-#passwordPage input{
+#passwordPage h2{
+    margin-bottom:10px;
+}
+
+#passwordInput{
     padding:12px;
     font-size:16px;
     border-radius:8px;
     border:none;
-    margin-top:15px;
     text-align:center;
+    outline:none;
 }
 
-#passwordPage button{
+#unlockBtn{
     margin-top:15px;
-    padding:10px 20px;
+    padding:10px 25px;
     font-size:16px;
     border:none;
     border-radius:8px;
@@ -53,12 +54,23 @@ body{
 }
 
 #errorMsg{
-    margin-top:10px;
-    color:yellow;
+    margin-top:12px;
     font-weight:bold;
 }
 
-/* ---------- PAGE 1 ---------- */
+.shake{
+    animation:shake 0.4s;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
+    75%{transform:translateX(-5px);}
+    100%{transform:translateX(0);}
+}
+
+/* ================= PAGE 1 ================= */
 #page1{
     height:100vh;
     background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
@@ -84,9 +96,7 @@ h1{color:#b30059;}
     animation:blink 1.5s infinite;
 }
 
-@keyframes blink{
-    50%{opacity:0.4;}
-}
+@keyframes blink{50%{opacity:0.4;}}
 
 .btn{
     padding:14px 32px;
@@ -113,7 +123,7 @@ h1{color:#b30059;}
     font-weight:600;
 }
 
-/* ---------- PAGE 2 ---------- */
+/* ================= PAGE 2 ================= */
 #page2{
     display:flex;
     flex-direction:column;
@@ -128,6 +138,60 @@ h1{color:#b30059;}
     opacity:0;
     pointer-events:none;
 }
+
+.glow{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,rgba(255,255,255,0.25),transparent 70%);
+    filter:blur(40px);
+}
+
+.big-heart{
+    font-size:120px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{50%{transform:scale(1.15);}}
+
+/* Floating hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:22px;
+    animation:float 7s linear infinite;
+}
+@keyframes float{
+    to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* Sparkle */
+.sparkle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s ease-out forwards;
+}
+@keyframes twinkle{
+    to{transform:scale(0);opacity:0;}
+}
+
+/* Confetti */
+.confetti{
+    position:fixed;
+    width:8px;
+    height:14px;
+    top:-20px;
+    animation:fall 3s linear forwards;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
 </style>
 </head>
 
@@ -137,7 +201,7 @@ h1{color:#b30059;}
 <div id="passwordPage">
     <h2>Enter Secret Password 💕</h2>
     <input type="password" id="passwordInput" placeholder="Enter password">
-    <button onclick="checkPassword()">Unlock ❤️</button>
+    <button id="unlockBtn">Unlock ❤️</button>
     <div id="errorMsg"></div>
 </div>
 
@@ -151,6 +215,7 @@ h1{color:#b30059;}
     <div class="buttons">
       <p id="hintText">Sorry you can't click NO, if you want try it 😜</p>
       <button id="yesBtn" class="btn">Yes 💖</button>
+
       <div id="noContainer">
         <button id="noBtn" class="btn">No</button>
         <div id="msg"></div>
@@ -159,42 +224,24 @@ h1{color:#b30059;}
   </div>
 </div>
 
-<!-- PAGE 2 (unchanged content from your original code) -->
+<!-- PAGE 2 -->
 <div id="page2" class="fade">
+  <div class="glow"></div>
   <h1>KRISHNA RAJ ❤️ KODIMALAR</h1>
   <h2>என்றும் உன்னோடு… Forever & Always 💍</h2>
   <div class="big-heart">❤️</div>
-  <img id="slide" src="https://media.tenor.com/zhnbS6DI_60AAAAi/djnitish97-hug.gif">
+  <img id="slide" width="280" style="border-radius:22px;margin-top:20px;">
 </div>
 
 <script>
 
-/* ---------- PASSWORD LOGIC ---------- */
-const correctPassword = "krish123"; // 🔐 Change this
+/* ================= PASSWORD LOGIC ================= */
+const correctPassword = "kodimalar"; // 🔐 change here
+let attempts = 0;
+const maxAttempts = 3;
 
-function checkPassword(){
-    const input = document.getElementById("passwordInput").value;
-    const error = document.getElementById("errorMsg");
-
-    if(input === correctPassword){
-        document.getElementById("passwordPage").style.display="none";
-        const page1 = document.getElementById("page1");
-        page1.style.display="flex";
-        page1.style.opacity=1;
-    }else{
-        error.innerText="Wrong password 😢 Try again!";
-    }
-}
-
-/* Allow Enter key */
-document.getElementById("passwordInput")
-.addEventListener("keypress",function(e){
-    if(e.key==="Enter"){
-        checkPassword();
-    }
-});
-
-</script>
-
-</body>
-</html>
+const passwordPage = document.getElementById("passwordPage");
+const passwordInput = document.getElementById("passwordInput");
+const unlockBtn = document.getElementById("unlockBtn");
+const errorMsg = document.getElementById("errorMsg");
+const page1 =

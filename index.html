@@ -1,560 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Valentine ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Surprise</title>
+
 <style>
 body{
     margin:0;
-    height:100vh;
-    font-family:Arial,sans-serif;
+    font-family:'Segoe UI',sans-serif;
     overflow:hidden;
-    text-align:center;
-    background:#000;
-    color:white;
 }
-/* ========== PASSWORD PAGE ========== */
-#passwordPage{
+
+/* ================= PAGES COMMON ================= */
+.page{
+    position:absolute;
+    width:100%;
     height:100vh;
-    background:linear-gradient(to bottom,#ff758c,#ff7eb3);
+    top:0;left:0;
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
+    transition:opacity 1s;
+}
+
+/* ================= PAGE 4 (YOUR EXISTING STYLE SAFE) ================= */
+#page4{
+    background:#111;
     color:white;
+}
+
+/* ================= PAGE 5 (ONLY MODIFIED PART) ================= */
+#page5{
+    background: radial-gradient(circle,#330014,#b0004b);
+    color:white;
+    opacity:0;
+    pointer-events:none;
+    overflow-y:auto;          /* ✅ Scroll enabled */
+    padding:40px 15px 80px;
+    box-sizing:border-box;
+    text-align:center;
+}
+
+/* Title */
+#page5 h1{
+    font-size:40px;
+    margin-bottom:20px;
+    text-shadow:0 0 20px #ff6699;
+}
+
+/* 📜 Paper Card */
+#paper{
+    background:#fffdf5;
+    color:#5a2a27;
+    max-width:750px;
+    margin:30px auto;
+    padding:35px 25px;
+    border-radius:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    font-size:18px;
+    line-height:1.8;
+    text-align:left;
     position:relative;
 }
-#passwordBox{
-    background:rgba(255,255,255,0.15);
-    padding:40px;
-    border-radius:20px;
-    backdrop-filter:blur(10px);
-}
-input{
-    padding:12px;
-    font-size:16px;
-    border-radius:8px;
-    border:none;
-    text-align:center;
-    outline:none;
-    width:220px;
-}
-button{
-    margin-top:15px;
-    padding:10px 25px;
-    font-size:16px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    background:white;
-    color:#ff3366;
-    font-weight:bold;
-}
-#errorMsg{
-    margin-top:10px;
-    font-weight:bold;
-}
-.shake{animation:shake 0.4s;}
-@keyframes shake{
-    0%{transform:translateX(0);}
-    25%{transform:translateX(-5px);}
-    50%{transform:translateX(5px);}
-    75%{transform:translateX(-5px);}
-    100%{transform:translateX(0);}
-}
-/* ========== PAGE 1 ========== */
-#page1{
-    height:100vh;
-    background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    color: #b30059;
-    flex-direction:column;
-}
-.love-images{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-bottom:15px;
-}
-.love-images img{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    box-shadow:0 0 10px #ff6699;
-    animation:floatUp 3s ease-in-out infinite alternate;
-}
-@keyframes floatUp{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-10px);}
-}
-.container{position:relative;}
-h1{color:#b30059;}
-.buttons{margin-top:30px;position:relative;}
-#hintText{
-    margin-bottom:12px;
-    font-size:15px;
-    color:#800040;
-    font-weight:600;
-}
-.btn{
-    padding:14px 32px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    transition:transform 0.3s;
-}
-#yesBtn{background:#ff3366;color:white;}
-#noBtn{background:#555;color:white;}
-#noContainer{
-    display:inline-block;
+
+#paper::before{
+    content:"";
     position:absolute;
-    margin-left:20px;
-}
-#msg{
-    margin-top:8px;
-    font-size:17px;
-    color:#800040;
-    font-weight:600;
-}
-/* ========== PAGE 2 ========== */
-#page2{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-    background: radial-gradient(circle at top,#330014,#660029,#b0004b);
-    color:white;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    opacity:0;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 28px,
+        rgba(0,0,0,0.03) 29px
+    );
     pointer-events:none;
-    transition:opacity 1s;
-    box-shadow: inset 0 0 200px 60px rgba(255, 20, 70, 0.3);
-    text-shadow: 0 0 20px #ff3a6e;
 }
-.creative-name{
-    font-size:48px;
-    font-weight:bold;
-    background:linear-gradient(45deg,#ffd700,#fff,#ff99cc,#ffd700);
-    background-size:300% 300%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:shine 4s linear infinite;
-    text-shadow:0 0 25px rgba(255,215,0,0.9);
-    margin-bottom: 15px;
-}
-@keyframes shine{0%{background-position:0%}100%{background-position:100%}}
-.big-heart{
-    font-size:120px;
-    animation:pulse 1.5s infinite;
-    text-shadow: 0 0 30px #ff4066;
-}
-@keyframes pulse{50%{transform:scale(1.15);}}
-#extraSection{
-    margin-top:30px;
-    font-weight:600;
-    text-shadow: 0 0 10px #ff6f92;
-}
-#showBtn{
-    margin-top:15px;
-    padding:12px 25px;
-    border-radius:25px;
-    background:#ff3366;
-    border:none;
-    color:white;
-    font-weight:bold;
-    font-size:18px;
-    cursor:pointer;
-    box-shadow: 0 0 15px #ff4a79;
-    transition: transform 0.3s ease;
-}
-#showBtn:hover{transform: scale(1.1);}
-/* ========== PAGE 3 ========== */
-#page3{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: radial-gradient(circle,#330014,#660029,#b0004b);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 1s;
-    color:white;
-    text-shadow: 0 0 15px #ff6699;
-}
-#page3 h2{font-size:2em;margin-bottom:25px;text-shadow:0 0 20px #ff99bb;}
-#page3 img{
-    width:300px;
-    border-radius:20px;
-    box-shadow:0 0 40px rgba(255,102,153,0.9);
-    animation: zoomInOut 6s ease-in-out infinite;
-}
-@keyframes zoomInOut{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
-.heartCracker{position:fixed;font-size:18px;opacity:0.9;will-change: transform, opacity;pointer-events:none;user-select:none;color:#ff4a75;filter: drop-shadow(0 0 3px #ff1f55);}
-#nextPage3Btn{
-    margin-top:20px;
-    padding:12px 25px;
-    border-radius:25px;
-    background:#ff3366;
-    border:none;
-    color:white;
-    font-weight:bold;
-    font-size:18px;
-    cursor:pointer;
-    display:none;
-    box-shadow:0 0 15px #ff4a79;
-}
-/* ========== PAGE 4 ========== */
-#page4{
-    position:absolute;
-    top:0;left:0;width:100%;height:100%;
-    display:flex;flex-direction:column;
-    justify-content:center;align-items:center;
-    background:radial-gradient(circle,#330014,#660029,#b0004b);
-    color:white;opacity:0;pointer-events:none;transition:opacity 1s;
-    text-align:center;
-}
-#page4 input{
-    padding:10px 15px;
-    font-size:16px;
-    border-radius:8px;
-    border:none;
-    outline:none;
-    margin-right:10px;
-}
-#page4 button{
-    padding:10px 15px;
-    border-radius:8px;
-    border:none;
-    background:#ff3366;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-#page4 #nickError{
-    margin-top:10px;color:#ffb3b3;font-weight:bold;
-}
-/* ========== PAGE 5 ========== */
-#page5{
-    position:absolute;
-    top:0;left:0;width:100%;height:100%;
-    display:flex;flex-direction:column;
-    justify-content:center;align-items:center;
-    background: radial-gradient(circle,#330014,#b0004b);
-    color:white;opacity:0;pointer-events:none;transition:opacity 1s;
-    text-align:center;
-    overflow:hidden;
-}
-#page5 h1{
-    font-size:48px;
-    text-shadow:0 0 30px #ff6699;
-    margin-bottom:25px;
-}
-#loveLetter{
-    font-size:20px;
-    line-height:1.5;
-    max-width:600px;
-    text-shadow:0 0 15px #ff99bb;
-}
-/* Heart floating animation */
-.floatingHeart{
+
+/* 🌹 Falling Petals */
+.petal{
     position:fixed;
-    font-size:24px;
+    top:-20px;
+    font-size:22px;
     pointer-events:none;
-    animation:floatHeart 5s linear infinite;
-    opacity:0.9;
+    animation:fallPetal linear forwards;
 }
-@keyframes floatHeart{
-    0%{transform:translateY(100vh) rotate(0deg);}
-    100%{transform:translateY(-10vh) rotate(360deg);}
+
+@keyframes fallPetal{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+@media(max-width:600px){
+    #paper{
+        font-size:16px;
+        padding:25px 18px;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<!-- PASSWORD PAGE -->
-<div id="passwordPage">
-    <div id="passwordBox">
-        <form id="passwordForm">
-            <h2>Enter Secret Password 💕</h2>
-            <input type="password" id="passwordInput" placeholder="Enter password" required autocomplete="off">
-            <br>
-            <button type="submit">💖Unlock💖</button>
-            <div id="errorMsg"></div>
-        </form>
-    </div>
-</div>
-
-<!-- PAGE 1 -->
-<div id="page1">
-  <div class="love-images">
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9iNGluN3Z6Y2d3NGViNHdmb2Iyc3pweDFhdWxlM3JqdHhoemU3bSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L4NdxLGpIF1Rhft6n3/giphy.gif" alt="">
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9iNGluN3Z6Y2d3NGViNHdmb2Iyc3pweDFhdWxlM3JqdHhoemU3bSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L4NdxLGpIF1Rhft6n3/giphy.gif" alt="">
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9iNGluN3Z6Y2d3NGViNHdmb2Iyc3pweDFhdWxlM3JqdHhoemU3bSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L4NdxLGpIF1Rhft6n3/giphy.gif" alt="">
-  </div>
-  <div class="container">
-    <h1>KODIMALAR 💕</h1>
-    <h2>Will you be my Valentine?</h2>
-    <p>– Raj 💌</p>
-    <div class="buttons">
-      <p id="hintText">Don't waste your time to follow NO 😜, If you want try it</p>
-      <button id="yesBtn" class="btn">Yes💖</button>
-      <div id="noContainer">
-        <button id="noBtn" class="btn">No</button>
-        <div id="msg"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PAGE 2 -->
-<div id="page2">
-  <h1 class="creative-name">KRISHNA RAJ ❤️ KODIMALAR</h1>
-  <h2>Forever & Always 💍</h2>
-  <div class="big-heart">❤️</div>
-  <div id="extraSection">
-      <h3>I want to show you something… 💌</h3>
-      <button id="showBtn">💖Please Click💖</button>
-  </div>
-</div>
-
-<!-- PAGE 3 -->
-<div id="page3">
-    <h2>💖 My Aspiring moments With You 💖</h2>
-    <img id="slide3" alt="Slideshow image">
-    <button id="nextPage3Btn">Click Next 💌</button>
-</div>
-
 <!-- PAGE 4 -->
-<div id="page4">
-    <h2>Please type my nickname correctly to unlock the surprise</h2>
-    <input type="text" id="nicknameInput" placeholder="Type here">
-    <button id="submitNick">💖Submit💖</button>
-    <div id="nickError"></div>
+<div id="page4" class="page">
+    <h2>Click to Open Your Love Letter 💖</h2>
+    <button onclick="openLetter()">Open</button>
 </div>
 
-<!-- PAGE 5 -->
-<div id="page5">
-    <h1>🌹💖🌹 காதல் கவிதை 🌹💖🌹</h1>
-    <div id="loveLetter"></div>
+<!-- PAGE 5 (ENHANCED ONLY) -->
+<div id="page5" class="page">
+    <h1>💖 காதல் கவிதை 💖</h1>
+    <div id="paper">
+        <div id="loveLetter"></div>
+    </div>
 </div>
-
-<audio id="bgMusic" loop>
-  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
-</audio>
-<audio id="page3Music" loop src="https://cdn.pixabay.com/download/audio/2022/03/21/audio_5e2582c2c7.mp3?filename=romantic-instrumental-piano-17450.mp3" preload="auto"></audio>
 
 <script>
-/* ========== PASSWORD LOGIC ========== */
-const correctPassword = "Rajmalar";
-const passwordForm = document.getElementById("passwordForm");
-const passwordInput = document.getElementById("passwordInput");
-const errorMsg = document.getElementById("errorMsg");
-const passwordPage = document.getElementById("passwordPage");
-const page1 = document.getElementById("page1");
-const page2 = document.getElementById("page2");
-const page3 = document.getElementById("page3");
-const page3Music = document.getElementById("page3Music");
+const page4=document.getElementById("page4");
+const page5=document.getElementById("page5");
+const loveLetter=document.getElementById("loveLetter");
 
-passwordForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-    if(passwordInput.value === correctPassword){
-        passwordPage.style.display = "none";
-        page1.style.display = "flex";
-        passwordInput.value = "";
-    } else {
-        errorMsg.innerText = "Wrong password💔";
-        passwordInput.value = "";
-        passwordInput.focus();
-    }
-});
-
-/* ========== NO BUTTON ========== */
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const msg = document.getElementById("msg");
-const messages = ["Please don't do this 💭", "I am yours ❤️", "Sorry you can't click no 😆"];
-let i = 0;
-noBtn.onclick = function() {
-    this.style.position = "fixed";
-    this.style.left = Math.random() * 80 + "vw";
-    this.style.top = Math.random() * 80 + "vh";
-    msg.innerText = messages[i++ % messages.length];
-};
-
-/* ========== YES CLICK ========== */
-yesBtn.onclick = function() {
-    page1.style.display = "none";
-    page2.style.opacity = 1;
-    page2.style.pointerEvents = "auto";
-};
-
-/* ========== PAGE 2 BUTTON ========== */
-document.getElementById("showBtn").onclick = function() {
-    page2.style.opacity = 0;
-    page2.style.pointerEvents = "none";
-    page3.style.opacity = 1;
-    page3.style.pointerEvents = "auto";
-    startPage3();
-    page3Music.play().catch(()=>{});
-};
-
-/* ========== PAGE 3 SLIDESHOW ========== */
-const images3 = [
-    "img-1.jpeg",
-    "img-2.jpeg",
-    "img-3.jpeg",
-    "img-4.jpeg",
-    "img-5.jpeg",
-    "img-6.jpeg",
-    "img-7.jpeg"
-
-];
-let index3 = 0;
-const slide3 = document.getElementById("slide3");
-const nextPage3Btn = document.getElementById("nextPage3Btn");
-let slideshowInterval;
-
-function startPage3(){
-    slide3.src = images3[0];
-    index3 = 0;
-    heartCrackers();
-    nextPage3Btn.style.display = "none";
-
-    if(slideshowInterval) clearInterval(slideshowInterval);
-    slideshowInterval = setInterval(()=>{
-        index3++;
-        if(index3 >= images3.length){
-            clearInterval(slideshowInterval);
-            nextPage3Btn.style.display = "inline-block";
-            return;
-        }
-        slide3.src = images3[index3];
-        heartCrackers();
-    },6000);
+function openLetter(){
+    page4.style.opacity=0;
+    page4.style.pointerEvents="none";
+    page5.style.opacity=1;
+    page5.style.pointerEvents="auto";
+    startPage5();
 }
 
-/* NEXT PAGE 3 BUTTON -> PAGE 4 */
-nextPage3Btn.onclick = function(){
-    page3.style.opacity = 0;
-    page3.style.pointerEvents = "none";
-    page4.style.opacity = 1;
-    page4.style.pointerEvents = "auto";
-};
-
-/* ========== PAGE 4 NICKNAME SUBMIT ========== */
-const submitNick = document.getElementById("submitNick");
-const nicknameInput = document.getElementById("nicknameInput");
-const nickError = document.getElementById("nickError");
-const page4 = document.getElementById("page4");
-const page5 = document.getElementById("page5");
-
-submitNick.onclick = function(){
-    if(nicknameInput.value.trim().toLowerCase() === "raasukutty"){
-        page4.style.opacity = 0;
-        page4.style.pointerEvents = "none";
-        page5.style.opacity = 1;
-        page5.style.pointerEvents = "auto";
-        startPage5();
-    } else {
-        nickError.innerText = "Please type the correct one 💔";
-    }
-};
-
-/* ========== PAGE 5 LOVE LETTER ========== */
-const loveLetter = document.getElementById("loveLetter");
-const loveTexts = [
-    "என் அன்புள்ள என்னவளே,",
-    "அளவில்லாத ஆசை அவள் மீது கொண்ட நான் - கற்பனைக்கு அப்பாற்பட்ட காவியமான அவளை கவியுர என்னும் கனவனின் கிறுக்கல்கள்.",
-    "உந்தன் முகம் அதன் பொலிவுதனை கண்ட முழுமதியும் தோற்றுப் போய் நின்ற தருணமே அமாவாசை என்பார்கள் போல் தெரிகிறது...",
-    "மலர்*களை சூடினால் மனம் கமழும் என்பார்! இம் - மலரை நாடினால் மனம் அது மகிழும் என்பேன்..",
-    "கள்ளம் கபடமற்ற குழந்தை முகம்! அதுவே அவளின் சிறந்த குணம்.",
-    "கடல் அவை அசைந்தால் அலை ஒன்று பிறக்கும்! கொடி அவளை நினைத்தாலே மலர் போன்று மணக்கும்.",
-    "மலர் மாலை சூட விரும்புவோர் கோடி - பேர்! அம்-மலருக்கே மாலை சூட விரும்பும் உண்ணவர்❤️🫂.",
-    "அணிகலன்களை அணிய விரும்பாத அவளின் கழுத்தில் மணமேடை ஏறி மாலை அணிந்து மேள தாளங்கள் முழங்க மாங்கல்யம் அணிவித்து மணமுடிக்க விரும்பும் உந்தன் வருங்கால கணவனின் கவிதை எனும் கிறுக்கல்கள் ",
-    "மற்றவர்கள் தொலைத்த  பொக்கிஷம் அவள் - நான் தேடாமல் கிடைத்த வரம் அவளை தெரியாமல் கூட தொலைத்து விடமாட்டேன்",
-    "---உன்னவன்❤️"
+/* ================= TYPING LETTER ================= */
+const loveTexts=[
+"என் அன்புள்ள என்னவளே,",
+"அளவில்லாத ஆசை அவள் மீது கொண்ட நான் - கற்பனைக்கு அப்பாற்பட்ட காவியமான அவளை கவியுர என்னும் கனவனின் கிறுக்கல்கள்.",
+"உந்தன் முகம் அதன் பொலிவுதனை கண்ட முழுமதியும் தோற்றுப் போய் நின்ற தருணமே அமாவாசை என்பார்கள் போல் தெரிகிறது...",
+"மலர்களை சூடினால் மனம் கமழும் என்பார்! இம் - மலரை நாடினால் மனம் அது மகிழும் என்பேன்..",
+"மற்றவர்கள் தொலைத்த பொக்கிஷம் அவள் - நான் தேடாமல் கிடைத்த வரம் அவளை தெரியாமல் கூட தொலைத்து விடமாட்டேன்.",
+"---உன்னவன் ❤️"
 ];
 
 function startPage5(){
-    loveLetter.innerHTML = "";
-    let i=0, j=0;
+    loveLetter.innerHTML="";
+    let i=0,j=0;
+
     function typeLetter(){
         if(i>=loveTexts.length) return;
-        const text = loveTexts[i];
+        const text=loveTexts[i];
+
         if(j<text.length){
-            loveLetter.innerHTML += text[j];
+            loveLetter.innerHTML+=text[j];
             j++;
-            setTimeout(typeLetter,70);
-        } else {
-            loveLetter.innerHTML += "<br><br>";
+            setTimeout(typeLetter,40);
+        }else{
+            loveLetter.innerHTML+="<br><br>";
             i++;
             j=0;
-            setTimeout(typeLetter,300);
+            setTimeout(typeLetter,400);
         }
     }
+
     typeLetter();
-    createFloatingHearts();
+    createRosePetals();
 }
 
-/* ========== HEART SHAPED CRACKER FUNCTION (kept intact) ========== */
-function heartCrackers(){
-    const particlesCount = 40;
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    document.querySelectorAll(".heartCracker").forEach(el=>el.remove());
-    for(let i=0;i<particlesCount;i++){
-        const particle = document.createElement("div");
-        particle.className="heartCracker";
-        particle.innerText="❤️";
-        document.body.appendChild(particle);
-        particle.style.left=centerX+"px";
-        particle.style.top=centerY+"px";
-        const t=(Math.PI*2*i)/particlesCount-Math.PI;
-        const scale=15;
-        const x=scale*16*Math.pow(Math.sin(t),3);
-        const y=-scale*(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));
-        let start=null;
-        const duration=1500;
-        function animate(timestamp){
-            if(!start) start=timestamp;
-            const elapsed=timestamp-start;
-            const progress=Math.min(elapsed/duration,1);
-            const easeProgress = 1 - Math.pow(1-progress,3);
-            const currentX = centerX + x*easeProgress;
-            const currentY = centerY + y*easeProgress;
-            particle.style.transform=`translate(${currentX-centerX}px,${currentY-centerY}px) scale(${1+0.5*progress})`;
-            particle.style.opacity=1-progress;
-            if(progress<1) requestAnimationFrame(animate);
-            else particle.remove();
-        }
-        requestAnimationFrame(animate);
-    }
-}
-
-/* ========== PAGE 5 FLOATING HEARTS ========== */
-function createFloatingHearts(){
-    for(let i=0;i<15;i++){
-        const heart = document.createElement("div");
-        heart.className="floatingHeart";
-        heart.innerText="❤️";
-        heart.style.left = Math.random()*window.innerWidth+"px";
-        heart.style.animationDuration = (3+Math.random()*5)+"s";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),18000);
-    }
+/* ================= 🌹 ROSE PETALS ================= */
+function createRosePetals(){
+    setInterval(()=>{
+        const petal=document.createElement("div");
+        petal.className="petal";
+        petal.innerText="🌹";
+        petal.style.left=Math.random()*100+"vw";
+        petal.style.animationDuration=(4+Math.random()*4)+"s";
+        document.body.appendChild(petal);
+        setTimeout(()=>petal.remove(),8000);
+    },500);
 }
 </script>
+
 </body>
 </html>

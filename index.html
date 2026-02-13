@@ -412,11 +412,14 @@ document.getElementById("showBtn").onclick = function() {
 
 /* ========== PAGE 3 SLIDESHOW ========== */
 const images3 = [
-    "https://picsum.photos/400/500?1",
-    "https://picsum.photos/400/500?2",
-    "https://picsum.photos/400/500?3",
-    "https://picsum.photos/400/500?4",
-    "https://picsum.photos/400/500?5"
+    "img-1.jpeg",
+    "img-2.jpeg",
+    "img-3.jpeg",
+    "img-4.jpeg",
+    "img-5.jpeg",
+    "img-6.jpeg",
+    "img-7.jpeg"
+
 ];
 let index3 = 0;
 const slide3 = document.getElementById("slide3");
@@ -458,7 +461,7 @@ const page4 = document.getElementById("page4");
 const page5 = document.getElementById("page5");
 
 submitNick.onclick = function(){
-    if(nicknameInput.value.trim().toLowerCase() === "Raasukutty"){
+    if(nicknameInput.value.trim().toLowerCase() === "raasukutty"){
         page4.style.opacity = 0;
         page4.style.pointerEvents = "none";
         page5.style.opacity = 1;

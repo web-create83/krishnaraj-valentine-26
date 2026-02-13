@@ -290,7 +290,7 @@ h1{color:#b30059;}
             <h2>Enter Secret Password 💕</h2>
             <input type="password" id="passwordInput" placeholder="Enter password" required autocomplete="off">
             <br>
-            <button type="submit">Unlock ❤️</button>
+            <button type="submit">💖Unlock💖</button>
             <div id="errorMsg"></div>
         </form>
     </div>
@@ -299,17 +299,17 @@ h1{color:#b30059;}
 <!-- PAGE 1 -->
 <div id="page1">
   <div class="love-images">
-      <img src="https://i.ibb.co/1Rn4Q2X/love1.png" alt="">
-      <img src="https://i.ibb.co/0j5rj1g/love2.png" alt="">
-      <img src="https://i.ibb.co/wMz6H2k/love3.png" alt="">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9iNGluN3Z6Y2d3NGViNHdmb2Iyc3pweDFhdWxlM3JqdHhoemU3bSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L4NdxLGpIF1Rhft6n3/giphy.gif" alt="">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9iNGluN3Z6Y2d3NGViNHdmb2Iyc3pweDFhdWxlM3JqdHhoemU3bSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L4NdxLGpIF1Rhft6n3/giphy.gif" alt="">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9iNGluN3Z6Y2d3NGViNHdmb2Iyc3pweDFhdWxlM3JqdHhoemU3bSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L4NdxLGpIF1Rhft6n3/giphy.gif" alt="">
   </div>
   <div class="container">
     <h1>KODIMALAR 💕</h1>
     <h2>Will you be my Valentine?</h2>
     <p>– Raj 💌</p>
     <div class="buttons">
-      <p id="hintText">Don't waste your time to follow NO 😜</p>
-      <button id="yesBtn" class="btn">Yes 💖</button>
+      <p id="hintText">Don't waste your time to follow NO 😜, If you want try it</p>
+      <button id="yesBtn" class="btn">Yes💖</button>
       <div id="noContainer">
         <button id="noBtn" class="btn">No</button>
         <div id="msg"></div>
@@ -325,13 +325,13 @@ h1{color:#b30059;}
   <div class="big-heart">❤️</div>
   <div id="extraSection">
       <h3>I want to show you something… 💌</h3>
-      <button id="showBtn">Please Click 💖</button>
+      <button id="showBtn">💖Please Click💖</button>
   </div>
 </div>
 
 <!-- PAGE 3 -->
 <div id="page3">
-    <h2>My Beautiful Memories ❤️</h2>
+    <h2>💖 My Aspiring moments With You 💖</h2>
     <img id="slide3" alt="Slideshow image">
     <button id="nextPage3Btn">Click Next 💌</button>
 </div>
@@ -340,13 +340,13 @@ h1{color:#b30059;}
 <div id="page4">
     <h2>Please type my nickname correctly to unlock the surprise</h2>
     <input type="text" id="nicknameInput" placeholder="Type here">
-    <button id="submitNick">Submit</button>
+    <button id="submitNick">💖Submit💖</button>
     <div id="nickError"></div>
 </div>
 
 <!-- PAGE 5 -->
 <div id="page5">
-    <h1>My First Love Letter for You ❤️</h1>
+    <h1>🌹💖🌹 காதல் கவிதை 🌹💖🌹</h1>
     <div id="loveLetter"></div>
 </div>
 
@@ -357,7 +357,7 @@ h1{color:#b30059;}
 
 <script>
 /* ========== PASSWORD LOGIC ========== */
-const correctPassword = "kodimalar";
+const correctPassword = "Rajmalar";
 const passwordForm = document.getElementById("passwordForm");
 const passwordInput = document.getElementById("passwordInput");
 const errorMsg = document.getElementById("errorMsg");
@@ -374,7 +374,7 @@ passwordForm.addEventListener("submit", function(e) {
         page1.style.display = "flex";
         passwordInput.value = "";
     } else {
-        errorMsg.innerText = "Wrong password 💔";
+        errorMsg.innerText = "Wrong password💔";
         passwordInput.value = "";
         passwordInput.focus();
     }
@@ -384,7 +384,7 @@ passwordForm.addEventListener("submit", function(e) {
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const msg = document.getElementById("msg");
-const messages = ["Please don't do this 💭", "I am yours ❤️", "Sorry 😆"];
+const messages = ["Please don't do this 💭", "I am yours ❤️", "Sorry you can't click no 😆"];
 let i = 0;
 noBtn.onclick = function() {
     this.style.position = "fixed";
@@ -458,7 +458,7 @@ const page4 = document.getElementById("page4");
 const page5 = document.getElementById("page5");
 
 submitNick.onclick = function(){
-    if(nicknameInput.value.trim().toLowerCase() === "raj"){
+    if(nicknameInput.value.trim().toLowerCase() === "Raasukutty"){
         page4.style.opacity = 0;
         page4.style.pointerEvents = "none";
         page5.style.opacity = 1;
@@ -472,11 +472,16 @@ submitNick.onclick = function(){
 /* ========== PAGE 5 LOVE LETTER ========== */
 const loveLetter = document.getElementById("loveLetter");
 const loveTexts = [
-    "Dear Kodimalar,",
-    "From the moment I saw you, my heart knew you were special.",
-    "Every heartbeat whispers your name, and every thought is filled with your smile.",
-    "You are my sunshine in the darkest days and my moonlight in the quiet nights.",
-    "Forever yours, Raj ❤️"
+    "என் அன்புள்ள என்னவளே,",
+    "அளவில்லாத ஆசை அவள் மீது கொண்ட நான் - கற்பனைக்கு அப்பாற்பட்ட காவியமான அவளை கவியுர என்னும் கனவனின் கிறுக்கல்கள்.",
+    "உந்தன் முகம் அதன் பொலிவுதனை கண்ட முழுமதியும் தோற்றுப் போய் நின்ற தருணமே அமாவாசை என்பார்கள் போல் தெரிகிறது...",
+    "மலர்*களை சூடினால் மனம் கமழும் என்பார்! இம் - மலரை நாடினால் மனம் அது மகிழும் என்பேன்..",
+    "கள்ளம் கபடமற்ற குழந்தை முகம்! அதுவே அவளின் சிறந்த குணம்.",
+    "கடல் அவை அசைந்தால் அலை ஒன்று பிறக்கும்! கொடி அவளை நினைத்தாலே மலர் போன்று மணக்கும்.",
+    "மலர் மாலை சூட விரும்புவோர் கோடி - பேர்! அம்-மலருக்கே மாலை சூட விரும்பும் உண்ணவர்❤️🫂.",
+    "அணிகலன்களை அணிய விரும்பாத அவளின் கழுத்தில் மணமேடை ஏறி மாலை அணிந்து மேள தாளங்கள் முழங்க மாங்கல்யம் அணிவித்து மணமுடிக்க விரும்பும் உந்தன் வருங்கால கணவனின் கவிதை எனும் கிறுக்கல்கள் ",
+    "மற்றவர்கள் தொலைத்த  பொக்கிஷம் அவள் - நான் தேடாமல் கிடைத்த வரம் அவளை தெரியாமல் கூட தொலைத்து விடமாட்டேன்",
+    "---உன்னவன்❤️"
 ];
 
 function startPage5(){
@@ -544,7 +549,7 @@ function createFloatingHearts(){
         heart.style.left = Math.random()*window.innerWidth+"px";
         heart.style.animationDuration = (3+Math.random()*5)+"s";
         document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),8000);
+        setTimeout(()=>heart.remove(),18000);
     }
 }
 </script>
